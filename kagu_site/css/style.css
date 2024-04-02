@@ -1,0 +1,955 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap');
+
+
+
+a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+body {
+  max-width: 1366px;
+
+}
+
+a:visited {
+  text-decoration: none;
+  color: #FFF;
+}
+
+html {
+  scroll-behavior: smooth;
+  max-width: 1366px;
+  font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+  font-weight: 500;
+}
+
+header {
+  /* max-width: 1366px; */
+}
+
+header a:link {
+  color: #FFF;
+}
+
+header a:visited {
+  color: #FFF;
+}
+
+h1 {
+  margin-left: 30px;
+  margin-top: 5px;
+}
+
+h2, h3, h4, ul.pc_nav {
+  font-family: 'Raleway', sans-serif;
+}
+.container {
+  display: flex;
+  max-width: 1366px;
+}
+
+.center_position {
+  flex: 0 0 100%;
+
+}
+
+.main {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/*           自作Slideshow            */
+
+/* アニメ */
+.anime {
+  opacity: 0;
+}
+
+li {
+  list-style: none;
+}
+/* ↓スライドの外枠 */
+.slide-wrapper {
+  margin-top: 75px;
+  width: 100%;
+  height: 15%;
+  position: relative;
+  z-index: -2;
+  overflow: hidden; /*はみ出したスライドを隠す */
+  margin-bottom: -10px;
+}
+
+/* ↓左右のボタン */
+
+
+.slide {/*スライド全体*/
+  width: 300%;/*枚数で増加*/
+  height: 100%;
+  display: flex;
+  transition: all 1.1s;
+}
+.slide div { /*スライドの中身*/
+  width: 33.33%;/*枚数で割る*/
+  height: 100%;
+  font-size: 16px;
+  display: flex;
+  /* text-align: center;
+  justify-content: center; */
+  align-items: center;
+}
+
+.slide1{/*スライドさせるために必要なクラス*/
+  transform: translateX(0);
+}
+
+.slide2{/*スライドさせるために必要なクラス*/
+  transform: translateX(-33.33%);
+}
+
+.slide3{/*スライドさせるために必要なクラス*/
+  transform: translateX(-66.66%);
+}
+.slide div:nth-of-type(1){
+  background-color: #ffffff;
+} 
+.slide div:nth-of-type(2){
+  background-color: #ffffff;
+} 
+.slide div:nth-of-type(3){
+  background-color: #ffffff;
+} 
+
+.next {
+  display: none;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 10px;
+  bottom: 50%;
+  z-index: 10;
+  cursor: pointer;
+  border-top: solid 3px #FFF;
+  border-right: solid 3px #FFF;
+  -webkit-transform: rotate(45deg) translateY(50%);
+  transform: rotate(45deg) translateY(50%); 
+}
+
+.prev {
+  display: none;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 25px;
+  bottom: 50%;
+  z-index: 10;
+  cursor: pointer;
+  border-top: 3px solid #FFF;
+  border-right: 3px solid #FFF;
+  -webkit-transform: rotate(-135deg) translateY(-50%);
+  transform: rotate(-135deg) translateY(-50%);
+}
+
+/* ↓インジケーター */
+.indicator {
+  height: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  column-gap: 18px;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+}
+
+.indicator li {
+  display: none;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  list-style: none;
+  background-color: #fff;
+  border: 2px #222 solid;
+  cursor: pointer;
+}
+.indicator li:first-of-type {
+  background-color: #222;
+}
+
+.go_about {
+  position: sticky;
+  text-align: center;
+  bottom: 100px;
+  z-index: 0;
+}
+
+.go_about button {
+  width: 40px;
+  position: absolute;
+  bottom: -30px;
+  background: transparent;
+  border: none;
+  border-radius: 64px;
+  transition: all 0.5s;
+  z-index: 0;
+}
+
+.go_about a {
+  z-index: 0;
+  display: inline-block;
+}
+
+.go_about button:hover {
+  box-shadow: 0px 2px 7px 0px;
+}
+
+/*           自作Slideshowここまで            */
+
+/* 調整用スタイル */
+
+
+
+/* ヘッダー */
+
+.header {
+    /* background: #163041; */
+    width: 100%;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    opacity: 1;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(21, 44, 59, 0.9);
+    transition-duration: 1s;
+    transition: 1s;
+}
+
+.header:hover {
+  transition: all 0.2s;
+  opacity: 1.0;
+}
+
+.header__inner {
+     padding: 0 20px; /*左右の余白を確保する */
+     display: flex; /* ロゴとハンバーガーメニューを横に並べる */
+     align-items: center;
+     justify-content: space-between;
+     height: inherit; /*親要素の高さを継承 */
+     position: relative;
+
+}
+
+nav {
+  margin-left: -48px;
+}
+
+ul.pc_nav {
+  display: flex;
+  list-style-type: none;
+  gap: 10px;
+} 
+
+ul.pc_nav li {
+  font-size: 1.2em;
+  color: white;
+  background-color: transparent;
+}
+
+ul.pc_nav li button {
+  color: #FFF;
+  border: none;
+  outline: none;
+  background: none;
+  position: relative;
+}
+
+ul.pc_nav li button a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #FFF;
+  transform: scaleX(0);
+  transition: all 0.2s;
+}
+
+ul.pc_nav li button:hover {
+  color: #FFF;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+ul.pc_nav a {
+  padding: 24px 5px;
+}
+
+ul.pc_nav button:hover a::after  {
+  transform: scaleX(1);
+  transition: 0.2s cubic-bezier(0.42, 0, 0.76, 1.12);
+  
+}
+
+
+/* ヘッダーのロゴ部分 */
+.header__title {
+    width: 80px;
+}
+
+.header__title img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ヘッダーのナビ部分 */
+
+.header__nav {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    /* width: 100%; */
+    height: 140vh;
+    transform: translateX(100%); 
+    opacity: 80%;
+    background-color: #374547; /*ハンバーガーメニュークリック時のナビゲーションメニュー背景色*/
+    transition: ease .4s; /*ハンバーガーメニュークリック時のナビゲーションメニュー出現を遅延*/
+    visibility: hidden;
+  }
+
+  /* ハンバーガーメニュー */
+
+  .header__hamburger {
+    width: 48px;
+    height: 100%;
+    background-color: #163041;
+    opacity: 0;
+  }
+
+  .hamburger {
+    background-color: transparent;
+    border-color: transparent;
+    z-index: -999;
+  }
+
+  /* ハンバーガーメニューの線 */
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: #FFF;
+    position: relative;
+    transition: ease .4s; /*ハンバーガーメニュークリック時の三本線の動きを遅延*/
+    display: block;
+  }
+  
+  .hamburger span:nth-child(1) {
+    top: 0;
+  }
+  
+  .hamburger span:nth-child(2) {
+    margin: 8px 0;
+  }
+  
+  .hamburger span:nth-child(3) {
+    top: 0;
+  }
+
+  /* ハンバーガーメニュークリック後のスタイル */
+.header__nav.active {
+  transform: translateX(0);
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  top: -13px;
+  transform: rotate(-45deg);
+}
+
+.nav-items {
+    padding-top: 250px;
+    padding-bottom: 200px;
+  }
+  
+  /* ナビのリンク */
+  .nav-items__item a {
+    color: black;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .nav-items__item:last-child a {
+    margin-bottom: 0;
+  }
+
+
+
+  /* メイン */
+
+  .about_wrap {
+    background-image: url(../images/djordje-vukojicic-rvdHcdmCP-g-unsplash.jpg);
+    margin-bottom: 100px;
+    padding-top: 100px;
+    background-size: cover;
+    z-index: 1;
+  }
+
+  .about_wrap h2 {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em 0 5px 10px;
+    color: #fff;
+    width: 4em;
+  }
+
+  .about_wrap h3 {
+    color: #FFF;
+    font-weight: 200;
+    padding: 1em 1em 1em 18%;
+    font-size: 2.2em;
+    line-height: 2em;
+  }
+
+  .about_wrap p {
+    color: #FFF;
+    margin-left: 18%;
+    line-height: 1.4em; 
+    padding-bottom: 12em;
+   }
+
+   .fade_act {
+    animation: fadein 1s ease;
+    animation-fill-mode: both;
+    
+   }
+
+   .first {
+    animation-delay: 0.2s;
+   }
+
+   .second {
+    animation-delay: 0.8s;
+   }
+
+   @keyframes Hover {
+    0% {
+      border: none;
+    }
+    25% {
+      border: 2px solid #FFF;
+    }
+    50% {
+      border: 2px solid #FFF;
+     
+    }
+    75% {
+      border-left: 4px solid #FFF;
+      border-bottom: 2px solid #FFF;
+      border-right: 2px solid #FFF;
+    }
+    100% {
+      border-left: 10px solid #FFF;
+      border-bottom: 2px solid #FFF;
+      border-right: 2px solid #FFF;
+      border-top: 2px solid #FFF;
+    }
+   }
+
+   @keyframes fadein{
+    0%{
+      opacity: 0;
+      margin-bottom: -10px;
+    }
+    100%{
+      opacity: 1;
+      margin-bottom: 0;
+    }
+   }
+
+
+
+   h2 {
+    padding-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-size: 32px;
+    color: #163041;
+    /* border-bottom:3px solid #b5bfc5; */
+    /* width: 14%; */
+    text-align: center;
+   }
+
+   /* ニュース */
+   .news_wrap {
+    margin: 0em auto 8em auto;
+   }
+
+   .flex_wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    gap: 30px;
+   }
+
+   .flex_wrapper .flex_items {
+    width: 300px;
+    height: 370px;
+    box-shadow: 3px 3px 2px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid #cccfd1;
+   }
+
+   .flex_items .box_image {
+    padding: 10px;
+    width: 260px;
+    height: 200px;
+    margin: 0 auto;
+   }
+
+   .flex_items p {
+    margin-top: 60px;
+    line-height: 1.5em;
+    margin-left: 1.2em;
+   }
+
+   .flex_items span {
+    color: #888;
+    font-size: 0.8em;
+   }
+
+   .flex_items a {
+    color: #222;
+   }
+
+   .flex_items a:hover {
+    opacity: 0.8;
+   }
+   /* 家具紹介 */
+
+   .furniture_wrap {
+    margin-bottom: 100px;
+   }
+
+   h4 {
+    padding: 0.8em 0;
+    font-weight: 300;
+    font-size: 90px;
+    color: #fff;
+   }
+
+   .grid_wrapper button {
+    border: 2px solid #FFF;
+    padding: 1em 4em;
+    background-color: transparent;
+    font-size: 20px;
+    margin-bottom: 175px;
+    color: #FFF;
+
+   }
+
+   .b_black button {
+    color: #ffffff;
+    border-color: #ffffff;
+    margin-bottom: 175px;
+   }
+
+   .grid_wrapper button:hover {
+    background-color: #FFF;
+    color: #1f2428;
+    border-color: #163041;
+    transition: linear 0.2s;
+   }
+
+   .products_table {
+    background-image: url(../images/table01.jpg);
+    background-size: cover;
+    padding-left: 10em;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+   }
+
+   .products_chair {
+    background-image: url(../images/hero_02.jpg);
+    background-size: cover;
+    padding-left: 10em;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+   }
+
+   .products_chair h4 {
+    padding: 1em 0 0.8em 0;
+   }
+
+
+   .products_bed {
+    background-image: url(../images/bed.jpg);
+    background-size: cover;
+    padding-left: 10em;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+   }
+
+   .grid_wrapper .products_bed p {
+    color: #ffffff; 
+   }
+
+
+  .grid_wrapper {
+    width: 100%;
+  }
+
+  .grid_wrapper .products_bed h4, .products_bed p {
+    color: #222;
+    text-align: left;
+
+  }
+
+  
+
+  .grid_wrapper p {
+    line-height: 1.8em;
+    padding-bottom: 40px;
+    color: #FFF;
+  }
+
+
+  /* 採用情報、お問い合わせ */
+  h3 {
+    color: #ffffff;
+    font-size: 26px;
+    padding: 1em;
+    margin-top: 24px;
+  }
+
+  .double_wrap {
+    /* width: 860px; */
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    gap: 20px;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
+  }
+
+  .double_wrap p {
+    color: #FFF;
+    font-size: 90%;
+    line-height: 1.6em;
+    margin-left: 20px;
+  }
+
+  .recruit {
+    width: 378px;
+    height: 400px;
+    background-image: url(../images/EH191_L.jpg);
+  }
+
+  .contact {
+    width: 378px;
+    height: 400px;
+    background-image: url(../images/EH155_L.jpg);
+  }
+
+  .double_wrap button {
+    border: 2px solid #FFF;
+    padding: 0.6em 4em;
+    background-color: transparent;
+    font-size: 18px;
+    margin-top: 1.2em;
+    margin-left: 1em;
+    color: #FFF;
+    
+
+   }
+
+   .double_wrap button:hover {
+    background-color: #FFF;
+    color: #1f2428;
+    border-color: #163041;
+    transition: linear 0.2s;
+   }
+
+   .insta {
+    margin-bottom: 8em;
+   }
+
+   .insta_wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 0 1em 2em;
+   }
+
+   .insta_wrap .insta_image a {
+
+
+    transition: all 0.4s;
+    z-index: 150;
+   }
+
+   .insta_wrap .insta_image a::after {
+    background-image: url(../images/instahover.jpg);
+
+   }
+
+   .insta_wrap .insta_image a:hover {
+    opacity: 0.9;
+    transition: all 0.4s;
+   }
+
+   .insta_wrap .insta_image img {
+    width: 100%;
+    opacity: 1;
+   }
+
+
+  
+
+
+   footer {
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    text-align: center;
+    margin: 0px auto;
+    background-color: #163041;
+    padding: 50px;
+    line-height: 25px;
+    flex-direction: column;
+   }
+
+   footer ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+   }
+
+   footer ul.sns_icon {
+    gap: 42px;
+   }
+
+   footer p.copy {
+    font-size: 70%;
+    font-weight: 200;
+    margin-top: 10em;
+   }
+
+   footer p.address {
+    font-size: 90%;
+    line-height: 24px;
+    margin: 10px auto;
+   }
+
+   .gotop {
+    width: 98px;
+    height: 150px;
+    position: fixed;
+    top: 83%;
+    right: -40px;
+    transition: ease 0.2s;
+    
+    opacity: 0;
+   }
+
+   .gotop button {
+    width: 60%;
+    height: 60%;
+    background-image: url(../images/ue.svg);
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+
+   }
+
+   .gotop button:hover {
+    transition: all 0.2s;
+    opacity: 0.9;
+   }
+
+
+/* contact.html */
+   .form_group {
+    display: table ;
+    margin: 0 auto;
+    border-top: 1px solid #cccfd1;
+   }
+
+   .form_group_title {
+    display: table-cell;
+    width: 200px;
+    padding: 1.5em;
+    background-color: #e8ecef;
+    font-weight: 600;
+   }
+
+   .requie {
+    display: table-cell;
+    width: 80px;
+    background-color: #e8ecef;
+   }
+
+   .requie span {
+    font-size: 0.7em;
+    background-color: rgb(233, 171, 15);
+    color: #FFF;
+    padding: 2px 5px;
+    border-radius: 5px;
+   }
+   .type_area {
+    display: table-cell;
+    width: 500px;
+    padding-left: 1em;
+   }
+   .type_area span {
+    font-size: 0.7em;
+    color: #374547;
+   }
+
+   .submit_b button {
+    display: table-row;
+    padding: 1em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+   }
+
+   /* レスポンシブ対応 */
+
+   @media(max-width: 1035px) {
+ 
+    .flex_wrapper .flex_items {
+      width: 300px;
+      height: 350px;
+      box-shadow: 3px 3px 2px 0px rgba(0, 0, 0, 0.4);
+      border: 1px solid #cccfd1;
+     }
+  
+     .flex_items .box_image {
+      padding: 10px;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+     }
+     .flex_items p {
+      margin-top: 0;
+     }
+     .flex_wrapper {
+      flex-wrap: wrap;
+      gap: 10px;
+     }
+     .header__nav {
+      visibility: visible;
+     }
+
+    
+    
+   }
+   @media(max-width: 768px) {
+    ul.pc_nav {
+      display: none;
+    }
+    .header__hamburger {
+      opacity: 1;
+    }
+  
+    .hamburger {
+      z-index: 999;
+    }
+    .flex_wrapper {
+      gap: 10px;
+     }
+     
+   }
+
+   @media(max-width: 520px) {
+    h1 {
+      margin-left: 10px;
+    }
+    .about_wrap h3 {
+      padding-left: 0.4em;
+      padding-right: 0;
+      font-size: 2em;
+
+    }
+    .about_wrap p{
+      margin-left: 1em;
+
+    }
+    .products_table {
+      background-image: url(../images/table01.jpg);
+      background-size: cover;
+      padding-left: 1em;
+      background-position: center;
+    }
+    .products_chair {
+      background-image: url(../images/hero_02.jpg);
+      background-size: cover;
+      padding-left: 1em;
+      background-position: -692px;
+    }
+    .products_bed {
+      background-image: url(../images/bed.jpg);
+      background-size: cover;
+      padding-left: 1em;
+      background-position: center;
+      color: #FFF;
+    }
+    .grid_wrapper .products_bed p {
+      color: #ffffff;
+    }
+    .b_black button {
+      color: #222;
+      border-color: #222;
+      margin-bottom: 175px;
+     }
+    .double_wrap {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      width: 100%;
+    }
+    .recruit, .contact {
+      height: 430px;
+      width: 90%;
+      background-size: cover;
+      background-position: center;
+    }
+    footer ul {
+      flex-wrap: wrap;
+    }
+    .gotop {
+      width: 70px;
+      height: 114px;
+     }
+     
+     
+   }
+
+   nav ul li button a span {
+    color: rgb(253 209 40);
+    font-weight: 800;
+  }
